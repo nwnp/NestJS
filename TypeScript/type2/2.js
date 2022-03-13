@@ -1,0 +1,11 @@
+"use strict";
+exports.__esModule = true;
+var v1 = undefined;
+var v2 = null;
+// v1 = 123;
+var v3 = undefined;
+v3 = 123;
+var v4 = undefined;
+console.log("v4=> ".concat(v4));
+console.log("typeof undefined =>", typeof undefined);
+console.log("typeof null =>", typeof null);

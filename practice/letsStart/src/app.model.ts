@@ -16,7 +16,6 @@ export const Cat: CatType[] = [
     isCute: true,
     friends: ["asdfhj29009", "WE09tju2j"],
   },
-
   {
     id: "iohf2309q4hr",
     name: "som",
@@ -25,7 +24,6 @@ export const Cat: CatType[] = [
     isCute: true,
     friends: ["weju0fj20qj", "asdfhj29009", "weju0fj20qj"],
   },
-
   {
     id: "WE09tju2j",
     name: "lean",
@@ -34,7 +32,6 @@ export const Cat: CatType[] = [
     isCute: false,
     friends: [],
   },
-
   {
     id: "asdfhj29009",
     name: "star",
@@ -43,7 +40,6 @@ export const Cat: CatType[] = [
     isCute: true,
     friends: ["weju0fj20qj"],
   },
-
   {
     id: "weju0fj20qj",
     name: "red",

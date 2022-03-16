@@ -1,8 +1,9 @@
 import * as express from "express";
-import { Cat, CatType } from "./app.model";
+import catsRouter from "./cats/cats.route";
 
 const app: express.Express = express();
 
+/** logging middleware */
 app.use(
   (req: express.Request, res: express.Response, next: express.NextFunction) => {
     console.log(`this is logging middleware: ${req.rawHeaders[1]}`);
@@ -10,18 +11,14 @@ app.use(
   }
 );
 
-app.get("/", (req: express.Request, res: express.Response) => {
-  res.send({ cats: Cat });
-});
+/** json middleware */
+// 이 middleware가 없으면 req.body가 undefined로 들어오게 됨
+app.use(express.json());
 
-app.get("/cats/blue", (req, res) => {
-  res.send({ cats: Cat, blue: Cat[0] });
-});
+/** route 등록 */
+app.use(catsRouter);
 
-app.get("/cats/som", (req, res) => {
-  res.send({ som: Cat[0] });
-});
-
+/** 404 middleware */
 app.use((req, res, next) => {
   const error = {
     status: "404",
@@ -32,5 +29,5 @@ app.use((req, res, next) => {
 });
 
 app.listen(8080, () => {
-  console.log("Server is on...");
+  console.log("Server(8080) is on...");
 });

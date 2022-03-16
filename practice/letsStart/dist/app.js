@@ -8,7 +8,7 @@ app.use(function (req, res, next) {
     next();
 });
 app.use(express.json());
-app.use(cats_route_1.default);
+app.use("/cats", cats_route_1.default);
 app.use(function (req, res, next) {
     var error = {
         status: "404",

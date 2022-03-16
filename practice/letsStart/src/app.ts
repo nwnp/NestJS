@@ -16,7 +16,7 @@ app.use(
 app.use(express.json());
 
 /** route 등록 */
-app.use(catsRouter);
+app.use("/cats", catsRouter);
 
 /** 404 middleware */
 app.use((req, res, next) => {

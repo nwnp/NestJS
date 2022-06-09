@@ -16,6 +16,8 @@ import {
 import { CatsService } from './cats.service';
 import { SuccessInterceptor } from 'src/common/interceptors/success.interceptor';
 import { CatRequestDto } from './dto/cats.request.dto';
+import { ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ReadOnlyCatDto } from './dto/cats.dto';
 
 @Controller('cats')
 @UseInterceptors(SuccessInterceptor)
@@ -28,6 +30,16 @@ export class CatsController {
     return 'current cat';
   }
 
+  @ApiResponse({
+    status: 500,
+    description: 'Server Error...',
+  })
+  @ApiResponse({
+    status: 200,
+    description: '성공!',
+    type: ReadOnlyCatDto,
+  })
+  @ApiOperation({ summary: '회원가입' }) // swagger description
   @Post('signup')
   async signUp(@Body() body: CatRequestDto) {
     return await this.catsService.signUp(body);

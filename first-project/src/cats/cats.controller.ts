@@ -22,38 +22,27 @@ export class CatsController {
   constructor(private readonly catsService: CatsService) {}
 
   @Get()
-  getAllCat() {
-    // throw new HttpException('broken!!', 401);
-    console.log('hello controller');
-    return { cats: 'all cats' };
-  }
-
-  @Get(':id')
-  // getOneCat(@Param() param) {
-  // getOneCat(@Param('id') param) {
-  getOneCat(@Param('id', ParseIntPipe) param) {
-    console.log(param);
-    console.log(typeof param);
-    return 'one cat';
+  getCurrentCat() {
+    return 'current cat';
   }
 
   @Post()
-  createCat() {
-    return 'create cat';
+  async signUp() {
+    return 'signup';
   }
 
-  @Put()
-  updateCat() {
-    return 'update cat';
+  @Post('login')
+  logIn() {
+    return 'login';
   }
 
-  @Patch(':id')
-  updatePartialCat() {
-    return 'update partial cat';
+  @Post('logout')
+  logOut() {
+    return 'login';
   }
 
-  @Delete(':id')
-  deleteCat() {
-    return 'delete cat';
+  @Post('upload/cats')
+  uploadCatImg() {
+    return 'uploadImg';
   }
 }

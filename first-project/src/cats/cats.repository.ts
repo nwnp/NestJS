@@ -11,7 +11,6 @@ export class CatsRepository {
   async existsByEmail(email: string): Promise<object> {
     try {
       const result = await this.catModel.exists({ email });
-      console.log(typeof result);
       return result;
     } catch (error) {
       throw new HttpException('db error', 400);

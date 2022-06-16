@@ -1,14 +1,11 @@
 import { CatsRepository } from './cats.repository';
 import { Injectable, HttpException } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { Cat } from './cats.schema';
 import { CatRequestDto } from './dto/cats.request.dto';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class CatsService {
-  constructor(private readonly catsRepository: CatsRepository) {}
+  constructor(private readonly catsRepository: CatsRepository) {} // DI
 
   async signUp(body: CatRequestDto) {
     const { email, name, password } = body;
@@ -25,6 +22,7 @@ export class CatsService {
       password: hashedPassword,
     });
 
+    // schema에서 만들어준 readOnlyData를 return
     return cat.readOnlyData;
   }
 }

@@ -48,12 +48,16 @@ export class Cat extends Document {
   @IsString()
   imgUrl: string;
 
+  // virtual field를 위한
   readonly readOnlyData: { id: string; email: string; name: string };
 }
 
 export const CatSchema = SchemaFactory.createForClass(Cat);
 
+/** virtual field */
 CatSchema.virtual('readOnlyData').get(function (this: Cat) {
+  // 아래 명시된 데이터만 return
+  // 즉, password를 가려줌
   return {
     id: this.id,
     email: this.email,

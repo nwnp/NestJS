@@ -20,6 +20,6 @@ export class AppModule implements NestModule {
   private readonly isDev: boolean = process.env.MODE === 'dev' ? true : false;
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(LoggerMiddleware).forRoutes('*');
-    mongoose.set('debug', this.isDev);
+    mongoose.set('debug', this.isDev); // mongoose query 출력
   }
 }

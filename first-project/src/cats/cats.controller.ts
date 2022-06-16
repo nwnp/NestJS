@@ -2,14 +2,8 @@ import { HttpExceptionFilter } from '../common/exceptions/http-exception.filter'
 import {
   Body,
   Controller,
-  Delete,
   Get,
-  HttpException,
-  Param,
-  ParseIntPipe,
-  Patch,
   Post,
-  Put,
   UseFilters,
   UseInterceptors,
 } from '@nestjs/common';
@@ -18,12 +12,17 @@ import { SuccessInterceptor } from 'src/common/interceptors/success.interceptor'
 import { CatRequestDto } from './dto/cats.request.dto';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { ReadOnlyCatDto } from './dto/cats.dto';
+import { AuthService } from 'src/auth/auth.service';
+import { LoginRequestDto } from 'src/auth/dto/login.request.dto';
 
 @Controller('cats')
 @UseInterceptors(SuccessInterceptor)
 @UseFilters(HttpExceptionFilter)
 export class CatsController {
-  constructor(private readonly catsService: CatsService) {}
+  constructor(
+    private readonly catsService: CatsService,
+    private readonly aushService: AuthService,
+  ) {}
 
   @Get()
   getCurrentCat() {
@@ -46,8 +45,8 @@ export class CatsController {
   }
 
   @Post('login')
-  logIn() {
-    return 'login';
+  logIn(@Body() data: LoginRequestDto) {
+    return this.aushService.jwtLogin(data);
   }
 
   @Post('logout')

@@ -20,4 +20,13 @@ export class CatsRepository {
   async create(cat: CatRequestDto): Promise<Cat> {
     return await this.catModel.create(cat);
   }
+
+  async findCatByEmail(email: string) {
+    try {
+      const result = await this.catModel.findOne({ email });
+      return result;
+    } catch (error) {
+      throw new HttpException('존재하지 않는 이메일입니다.', 401);
+    }
+  }
 }

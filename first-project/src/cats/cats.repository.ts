@@ -45,4 +45,8 @@ export class CatsRepository {
     console.log(newCat);
     return newCat;
   }
+
+  async findAll() {
+    return await this.catModel.find();
+  }
 }

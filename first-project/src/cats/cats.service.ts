@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { CatsRepository } from './cats.repository';
 import { Injectable, HttpException } from '@nestjs/common';
 import { CatRequestDto } from './dto/cats.request.dto';
@@ -36,5 +37,11 @@ export class CatsService {
       fileName,
     );
     return newCat.readOnlyData;
+  }
+
+  async getAllCat() {
+    const allCat = await this.catsRepository.findAll();
+    const readOnlyCats = allCat.map((cat) => cat.readOnlyData);
+    return readOnlyCats;
   }
 }

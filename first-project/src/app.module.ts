@@ -10,7 +10,7 @@ import mongoose from 'mongoose';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot(), // dotenv 사용하기 위한
     MongooseModule.forRoot(process.env.MONGO_URI),
     CatsModule,
     AuthModule,

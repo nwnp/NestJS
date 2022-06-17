@@ -4,9 +4,11 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { CatsModule } from 'src/cats/cats.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(), // dotenv 사용을 위한
     PassportModule,
     JwtModule.register({
       secret: 'secret',

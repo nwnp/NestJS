@@ -2,6 +2,7 @@ import { CatsRepository } from './cats.repository';
 import { Injectable, HttpException } from '@nestjs/common';
 import { CatRequestDto } from './dto/cats.request.dto';
 import * as bcrypt from 'bcrypt';
+import { Cat } from './cats.schema';
 
 @Injectable()
 export class CatsService {
@@ -24,5 +25,16 @@ export class CatsService {
 
     // schema에서 만들어준 readOnlyData를 return
     return cat.readOnlyData;
+  }
+
+  async uploadImg(cat: Cat, files: Array<Express.Multer.File>) {
+    const fileName = `cats/${files[0].filename}`;
+    console.log(fileName);
+
+    const newCat = await this.catsRepository.findByIdAndUpdateImg(
+      cat.id,
+      fileName,
+    );
+    return newCat.readOnlyData;
   }
 }

@@ -29,4 +29,11 @@ export class CatsRepository {
       throw new HttpException('존재하지 않는 이메일입니다.', 401);
     }
   }
+
+  async findCatByIdWithoutPassword(catId: string) {
+    const cat = await this.catModel.findById(catId).select('-password');
+    // select()를 사용하면 원하는 것만 가져오고, - 를 붙이면 제외하고 가져옴
+    // ex - select('email name password')
+    return cat;
+  }
 }

@@ -1,5 +1,5 @@
-import { JwtAuthGuard } from './../auth/jwt/jwt.guard';
-import { HttpExceptionFilter } from '../common/exceptions/http-exception.filter';
+import { JwtAuthGuard } from '../../auth/jwt/jwt.guard';
+import { HttpExceptionFilter } from '../../common/exceptions/http-exception.filter';
 import {
   Body,
   Controller,
@@ -12,17 +12,17 @@ import {
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
-import { CatsService } from './cats.service';
+import { CatsService } from '../services/cats.service';
 import { SuccessInterceptor } from 'src/common/interceptors/success.interceptor';
-import { CatRequestDto } from './dto/cats.request.dto';
+import { CatRequestDto } from '../dto/cats.request.dto';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { ReadOnlyCatDto } from './dto/cats.dto';
+import { ReadOnlyCatDto } from '../dto/cats.dto';
 import { AuthService } from 'src/auth/auth.service';
 import { LoginRequestDto } from 'src/auth/dto/login.request.dto';
 import { CurrentUser } from 'src/common/decorators/user.decorator';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { multerOptions } from 'src/common/utils/multer.options';
-import { Cat } from './cats.schema';
+import { Cat } from '../cats.schema';
 
 @Controller('cats')
 @UseInterceptors(SuccessInterceptor)

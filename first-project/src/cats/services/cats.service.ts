@@ -1,9 +1,9 @@
 import { map } from 'rxjs/operators';
-import { CatsRepository } from './cats.repository';
+import { CatsRepository } from '../cats.repository';
 import { Injectable, HttpException } from '@nestjs/common';
-import { CatRequestDto } from './dto/cats.request.dto';
+import { CatRequestDto } from '../dto/cats.request.dto';
 import * as bcrypt from 'bcrypt';
-import { Cat } from './cats.schema';
+import { Cat } from '../cats.schema';
 
 @Injectable()
 export class CatsService {

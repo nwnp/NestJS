@@ -32,7 +32,7 @@ export class HelloController {
 }
 ```
 
-- **`@Contrller`** 데코레이터 사용
+- **`@Controller`** 데코레이터 사용
 - 모든 표준 HTTP 메서드를 데코레이터로 제공
 - 데코레이터 안에 문자열을 기입하면 해당 라우팅을 prefix로 동작한다
 
@@ -41,10 +41,7 @@ export class HelloController {
 ```tsx
 // 예시: /hello/gildong?country=korea
 @Get(':name')
-get(
-		@Param('name') name: string,
-		@Query('country') country: string
-	): string {
+get(@Param('name') name: string, @Query('country') country: string): string {
 	return `my name is ${name} from ${country}`;
 }
 ```

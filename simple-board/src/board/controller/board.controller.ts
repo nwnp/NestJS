@@ -1,3 +1,4 @@
+import { BoardService } from './../service/board.service';
 import {
   Body,
   Controller,
@@ -10,14 +11,16 @@ import {
 
 @Controller('board')
 export class BoardController {
+  constructor(private readonly boardService: BoardService) {}
+
   @Get()
   findAll() {
-    return 'findall';
+    return this.boardService.findAll();
   }
 
   @Get(':id')
   find(@Param('id') id: number) {
-    return 'find';
+    return this.boardService.find(id);
   }
 
   @Post()
